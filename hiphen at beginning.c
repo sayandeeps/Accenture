@@ -1,48 +1,31 @@
+// Online C compiler to run C program online
 #include <stdio.h>
+#include <stdlib.h>
 
-void moveHyphensToStart(char *str) {
-    int i = 0, j = 0, k = 0;
-    int hyphenCount = 0;
-    char temp[100]; 
-
-    while (str[i] != '\0') {
-        if (str[i] == '-') {
-            hyphenCount++;
+char*MoveHyphen(char str[],int n){
+   char ans[100];
+    int c = 0, hcount = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != '-') {
+            printf("%d ",n);
+            ans[c++] = str[i];
         } else {
-            temp[j++] = str[i];
+            hcount++;
         }
-        i++;
     }
-    temp[j] = '\0'; 
-
-
-    for (k = 0; k < hyphenCount; k++) {
-        str[k] = '-';
+    ans[c] = '\0';
+    for (int i = 0; i < hcount; i++) {
+        str[i] = '-';
     }
-
-
-    for (i = 0; temp[i] != '\0'; i++) {
-        str[k++] = temp[i];
+    for (int i = hcount, j = 0; ans[j] != '\0'; i++, j++) {
+        str[i] = ans[j];
     }
-    str[k] = '\0'; 
+    str[n] = '\0';
+    return str;
 }
-
 int main() {
     char str[100];
-    scanf("%[^\n]s",str);
- 
-    int len = 0;
-    while (str[len] != '\0') {
-        if (str[len] == '\n') {
-            str[len] = '\0';
-            break;
-        }
-        len++;
-    }
-
-    moveHyphensToStart(str);
-
-    printf("%s\n", str);
-
+    scanf("%[^/n]s",str);
+    printf("%s",MoveHyphen(str,length(str)));
     return 0;
 }
