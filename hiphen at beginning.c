@@ -1,31 +1,24 @@
-// Online C compiler to run C program online
 #include <stdio.h>
-#include <stdlib.h>
 
-char*MoveHyphen(char str[],int n){
-   char ans[100];
-    int c = 0, hcount = 0;
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] != '-') {
-            printf("%d ",n);
-            ans[c++] = str[i];
-        } else {
-            hcount++;
-        }
-    }
-    ans[c] = '\0';
-    for (int i = 0; i < hcount; i++) {
-        str[i] = '-';
-    }
-    for (int i = hcount, j = 0; ans[j] != '\0'; i++, j++) {
-        str[i] = ans[j];
-    }
-    str[n] = '\0';
-    return str;
+char* MoveHyphen(char str[], int n) {
+    int idx=n-1;
+   for(int i =n-1 ;i>=0;i--){
+       if(str[i]!='-'){
+           str[idx--]=str[i];
+       }
+   }
+   while(idx>=0){
+       str[idx--]='-';
+   }
+   return str;
 }
+
 int main() {
-    char str[100];
-    scanf("%[^/n]s",str);
-    printf("%s",MoveHyphen(str,length(str)));
+    char str[] = "String-Compare";
+    int n = sizeof(str) / sizeof(str[0]) - 1; 
+    printf("Original string: %s\n", str);
+    char* result = MoveHyphen(str, n);
+    printf("String after shifting hyphens: %s\n", result);
+
     return 0;
 }
